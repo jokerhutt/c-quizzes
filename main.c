@@ -4,6 +4,13 @@
 #include <ctype.h>
 #include <stdio.h>
 
+#define DEFAULT "\x1b[0m"
+#define RED "\x1b[31;1m"
+#define GREEN "\x1b[32;1m"
+#define YELLOW "\x1b[33;1m"
+#define BLUE "\x1b[34;1m"
+#define CYAN "\x1b[36;1m"
+
 Quiz quizzes[] = {
 
     {.questions =
@@ -220,6 +227,117 @@ Quiz quizzes[] = {
      .topic = "Sheep & Farm Animals"},
     {.questions =
          (Question[]){
+             {"What do bees produce?",
+              (Option[]){
+                  {'A', "Milk"}, {'B', "Honey"}, {'C', "Wool"}, {'D', "Silk"}},
+              4, 'B'},
+             {"A bee home is called?",
+              (Option[]){
+                  {'A', "Nest"}, {'B', "Hive"}, {'C', "Den"}, {'D', "Burrow"}},
+              4, 'B'},
+             {"Who lays eggs in a hive?",
+              (Option[]){{'A', "Worker"},
+                         {'B', "Drone"},
+                         {'C', "Queen"},
+                         {'D', "Larva"}},
+              4, 'C'},
+             {"Bees collect nectar from?",
+              (Option[]){{'A', "Trees"},
+                         {'B', "Flowers"},
+                         {'C', "Water"},
+                         {'D', "Soil"}},
+              4, 'B'},
+             {"What do bees use nectar for?",
+              (Option[]){{'A', "Wax"},
+                         {'B', "Honey"},
+                         {'C', "Food only"},
+                         {'D', "Poison"}},
+              4, 'B'},
+             {"Male bees are called?",
+              (Option[]){{'A', "Workers"},
+                         {'B', "Drones"},
+                         {'C', "Guards"},
+                         {'D', "Kings"}},
+              4, 'B'},
+             {"Worker bees are?",
+              (Option[]){
+                  {'A', "Male"}, {'B', "Female"}, {'C', "Both"}, {'D', "None"}},
+              4, 'B'},
+             {"What protects beekeepers?",
+              (Option[]){{'A', "Armor"},
+                         {'B', "Suit"},
+                         {'C', "Helmet"},
+                         {'D', "Shield"}},
+              4, 'B'},
+             {"Bees communicate by?",
+              (Option[]){{'A', "Sound"},
+                         {'B', "Dance"},
+                         {'C', "Smell"},
+                         {'D', "Light"}},
+              4, 'B'},
+             {"Honeycomb shape?",
+              (Option[]){{'A', "Square"},
+                         {'B', "Circle"},
+                         {'C', "Hexagon"},
+                         {'D', "Triangle"}},
+              4, 'C'},
+             {"What do bees pollinate?",
+              (Option[]){{'A', "Rocks"},
+                         {'B', "Flowers"},
+                         {'C', "Water"},
+                         {'D', "Sand"}},
+              4, 'B'},
+             {"Bees store honey in?",
+              (Option[]){{'A', "Leaves"},
+                         {'B', "Cells"},
+                         {'C', "Ground"},
+                         {'D', "Shells"}},
+              4, 'B'},
+             {"What is beeswax used for?",
+              (Option[]){{'A', "Fuel"},
+                         {'B', "Candles"},
+                         {'C', "Metal"},
+                         {'D', "Glass"}},
+              4, 'B'},
+             {"Bees belong to which group?",
+              (Option[]){{'A', "Mammals"},
+                         {'B', "Insects"},
+                         {'C', "Birds"},
+                         {'D', "Fish"}},
+              4, 'B'},
+             {"What do bees drink?",
+              (Option[]){
+                  {'A', "Milk"}, {'B', "Water"}, {'C', "Oil"}, {'D', "Juice"}},
+              4, 'B'},
+             {"Beekeeping is called?",
+              (Option[]){{'A', "Apiculture"},
+                         {'B', "Agriculture"},
+                         {'C', "Horticulture"},
+                         {'D', "Zoology"}},
+              4, 'A'},
+             {"What attracts bees?",
+              (Option[]){{'A', "Bright flowers"},
+                         {'B', "Dark caves"},
+                         {'C', "Cold air"},
+                         {'D', "Noise"}},
+              4, 'A'},
+             {"How many wings do bees have?",
+              (Option[]){{'A', "2"}, {'B', "4"}, {'C', "6"}, {'D', "8"}}, 4,
+              'B'},
+             {"What do bees make from pollen?",
+              (Option[]){
+                  {'A', "Wax"}, {'B', "Bread"}, {'C', "Honey"}, {'D', "Milk"}},
+              4, 'B'},
+             {"Bees help plants by?",
+              (Option[]){{'A', "Eating leaves"},
+                         {'B', "Pollinating"},
+                         {'C', "Breaking stems"},
+                         {'D', "Drying soil"}},
+              4, 'B'}},
+     .questionCount = 20,
+     .topic = "Bees & Beekeeping"},
+    {.questions =
+         (Question[]){
              {"C language created by?",
               (Option[]){{'A', "Dennis Ritchie"},
                          {'B', "Bjarne"},
@@ -331,7 +449,7 @@ int main(void) {
 
       printf("========================\n");
       printf("Question: %d\n", displayQNumber);
-      printf("%s\n", currentQuestion.question);
+      printf("%s%s%s\n", CYAN, currentQuestion.question, DEFAULT);
       printf("----------\n");
       for (int i = 0; i < currentQuestion.optionCount; i++) {
         Option option = currentQuestion.options[i];
@@ -366,10 +484,10 @@ int main(void) {
       printf("==========\n");
 
       if (tolower(userValue) == tolower(correctValue)) {
-        printf("Correct! \n");
+        printf("%sCorrect! %s\n", GREEN, DEFAULT);
         correctPoints++;
       } else {
-        printf("Incorrect! The answer was: \n");
+        printf("%sIncorrect! The answer was: %s\n", RED, DEFAULT);
         printf("%s\n", correctOptionContent);
       }
 
